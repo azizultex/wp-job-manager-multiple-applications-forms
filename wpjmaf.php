@@ -25,7 +25,10 @@ function wpjmaf_plugins_load(){
 add_filter( 'job_manager_locate_template', 
     function( $template, $template_name, $template_path )
     {
-        if( 'application-form.php' === $template_name )
+        global $post;
+        $form_id =  get_post_meta( $post->ID, 'wpjmaf_form_id', true );
+
+        if( 'application-form.php' === $template_name && class_exists('GFAPI') && GFAPI::get_form( $form_id ) )
         {
            return dirname(__FILE__) . '/inc/' . $template_name;
         }

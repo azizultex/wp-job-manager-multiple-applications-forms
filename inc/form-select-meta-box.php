@@ -42,10 +42,11 @@ class CustomMetaBox {
 		    <style>
 		    </style>
 		    <p class="meta-options wpjmaf_page_header_field hide_show">
-	        	<label for="wpjmaf_page_header_title"><?php esc_html_e( 'Gravity forms', 'wpjmaf' ); ?></label>
                 <?php 
-                if ( !function_exists('get_all_forms_shortcode') ) {
-                    echo '<select name="wpjmaf_form_id">';
+                if ( class_exists('GFAPI') ) {
+                    printf('<label for="wpjmaf_page_header_title">%s</label>', esc_html__( 'Gravity forms', 'wpjmaf' )); 
+
+                    echo '<select name="wpjmaf_form_id"><option value="">'. esc_html__('No form', 'wpjmaf') .'</option>';
                     $forms = GFAPI::get_forms();
                     foreach ( $forms as $form) {
                         $formId = $form['fields'][0]->formId;
@@ -53,6 +54,8 @@ class CustomMetaBox {
                         printf('<option value="%d" %s>%s</option>', $formId, $selected, $form['title']);
                     }
                     echo '</select>';
+                } else {
+                    printf("<p>%s</p>", esc_html__("Gravity form isn't active", 'wpjmaf'));
                 }
                 ?>
 		    </p>
