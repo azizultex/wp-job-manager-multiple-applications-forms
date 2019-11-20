@@ -1,13 +1,13 @@
 <?php
 /**
- * wpjmaf: Custom metabox
+ * wpjmaf: Gravity form Select
  *
  * @package WordPress
  * @subpackage wpjmaf
  * @since 1.0
  */
 
-class CustomMetaBox {
+class GFSelect {
 
     public function __construct() {
         add_action('add_meta_boxes', array( $this, 'wpjmaf_page_header_metabox' ), 10, 2);
@@ -91,4 +91,4 @@ class CustomMetaBox {
     }
 }
 
-new CustomMetaBox;
+new GFSelect;

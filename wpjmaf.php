@@ -14,14 +14,6 @@ Author URI: https://keendevs.com
 
 include( 'inc/form-select-meta-box.php' );
 
-
-function wpjmaf_plugins_load(){
-
-}
-
-// add_action('plugins_loaded', 'wpjmaf_plugins_load', 22);
-
-
 add_filter( 'job_manager_locate_template', 
     function( $template, $template_name, $template_path )
     {
